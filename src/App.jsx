@@ -1,23 +1,20 @@
-import Post from './components/molecules/Post/Post';
-import { postsData } from './data';
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './components/organisms/Navigation/Navigation';
+import PostsPage from './components/pages/PostsPage/PostsPage';
+import ArrayMethodsPage from './components/pages/ArrayMethodsPage/ArrayMethodsPage';
 import styles from './App.module.css';
 
 function App() {
   return (
     <div className={styles.appContainer}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Стрічка новин</h1>
-      <div className={styles.feed}>
-        {postsData.map((post) => (
-          <Post
-            key={post.id}
-            author={post.author}
-            content={post.content}
-            date={post.date}
-            avatar={post.avatar}
-            initialLikes={post.likes}
-          />
-        ))}
-      </div>
+      <Navigation />
+      <main className={styles.mainContent}>
+        <Routes>
+          <Route path="/" element={<ArrayMethodsPage />} />
+          <Route path="/array-methods" element={<ArrayMethodsPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+        </Routes>
+      </main>
     </div>
   );
 }

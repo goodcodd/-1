@@ -1,14 +1,11 @@
 .appContainer {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f2f5;
   min-height: 100vh;
+  background-color: #f0f2f5;
 }
 
-.feed {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.mainContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
