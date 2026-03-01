@@ -1,13 +1,22 @@
-import { useState } from 'react';
-import { studentsData } from '../../../studentsData';
+import { useState, useMemo } from 'react';
+import { studentsData as initialStudentsData } from '../../../studentsData';
+import AddStudentForm from '../../molecules/AddStudentForm/AddStudentForm';
 import styles from './ArrayMethodsPage.module.css';
 
 const ArrayMethodsPage = () => {
+  // Стан для списку студентів (починаємо з початкових даних)
+  const [students, setStudents] = useState(initialStudentsData);
+
+  // Функція для додавання нового студента
+  const handleAddStudent = (newStudent) => {
+    setStudents([...students, newStudent]);
+  };
+
   // 1. Рендеринг списку через .map()
-  const allStudents = studentsData;
+  const allStudents = students;
 
   // 2. Фільтрація даних через .filter()
-  const activeStudents = studentsData.filter(
+  const activeStudents = students.filter(
     student => student.isActive && student.score > 60
   );
 
@@ -18,17 +27,24 @@ const ArrayMethodsPage = () => {
 
   // 4. Сортування через .sort() (від найбільшого до найменшого)
   const [sortOrder, setSortOrder] = useState('desc');
-  const sortedStudents = [...studentsData].sort((a, b) => {
-    if (sortOrder === 'desc') {
-      return b.score - a.score;
-    } else {
-      return a.score - b.score;
-    }
-  });
+  const sortedStudents = useMemo(() => {
+    return [...students].sort((a, b) => {
+      if (sortOrder === 'desc') {
+        return b.score - a.score;
+      } else {
+        return a.score - b.score;
+      }
+    });
+  }, [students, sortOrder]);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Лабораторна робота: Методи масивів у React</h1>
+
+      {/* Форма додавання студента */}
+      <section className={styles.section}>
+        <AddStudentForm onAddStudent={handleAddStudent} />
+      </section>
 
       {/* Розділ 1: Рендеринг списку через .map() */}
       <section className={styles.section}>
@@ -51,6 +67,9 @@ const ArrayMethodsPage = () => {
             </li>
           ))}
         </ul>
+        <p className={styles.info}>
+          Всього студентів: {allStudents.length}
+        </p>
       </section>
 
       {/* Розділ 2: Фільтрація даних через .filter() */}
@@ -130,4 +149,3 @@ const ArrayMethodsPage = () => {
 };
 
 export default ArrayMethodsPage;
-

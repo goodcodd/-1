@@ -7,8 +7,14 @@
   transition: opacity 0.3s;
 }
 
-.button:hover {
+.button:hover:not(.disabled) {
   opacity: 0.8;
+}
+
+.button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .primary {
