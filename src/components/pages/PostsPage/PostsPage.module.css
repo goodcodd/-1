@@ -11,6 +11,21 @@
   font-size: 2rem;
 }
 
+.resultsInfo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.count {
+  color: #666;
+  font-size: 14px;
+}
+
+.count strong {
+  color: #007bff;
+  font-weight: 600;
+}
+
 .feed {
   display: flex;
   flex-direction: column;
