@@ -6,6 +6,7 @@ import PostPage from './pages/PostPage/PostPage';
 import Profile from './pages/Profile/Profile';
 import ProfileOverview from './pages/Profile/ProfileOverview';
 import ProfileSettings from './pages/Profile/ProfileSettings';
+import ArrayMethodsPage from './components/pages/ArrayMethodsPage/ArrayMethodsPage';
 import NotFound from './pages/NotFound/NotFound';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="feed" element={<Feed />} />
         <Route path="feed/:postId" element={<PostPage />} />
+        <Route path="array-methods" element={<ArrayMethodsPage />} />
         <Route path="profile/*" element={<Profile />}>
           <Route index element={<ProfileOverview />} />
           <Route path="settings" element={<ProfileSettings />} />
