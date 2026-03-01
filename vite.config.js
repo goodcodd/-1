@@ -5,9 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   // Для GitHub Pages: base має бути назвою репозиторію
-  // Якщо репозиторій називається username/repo-name, то base: '/repo-name/'
-  // Для локальної розробки base: '/'
+  // Репозиторій називається "-1", тому base: '/-1/'
+  // Для локальної розробки використовуємо '/', для production (GitHub Pages) - '/-1/'
   base: process.env.GITHUB_ACTIONS 
     ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` 
-    : '/',
+    : process.env.NODE_ENV === 'production'
+      ? '/-1/'
+      : '/',
 });
