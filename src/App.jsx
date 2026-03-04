@@ -7,6 +7,8 @@ import Profile from './pages/Profile/Profile';
 import ProfileOverview from './pages/Profile/ProfileOverview';
 import ProfileSettings from './pages/Profile/ProfileSettings';
 import ArrayMethodsPage from './components/pages/ArrayMethodsPage/ArrayMethodsPage';
+import Login from './pages/Login/Login';
+import ProtectedRoute from './components/hoc/ProtectedRoute';
 import NotFound from './pages/NotFound/NotFound';
 
 function App() {
@@ -17,10 +19,16 @@ function App() {
         <Route path="feed" element={<Feed />} />
         <Route path="feed/:postId" element={<PostPage />} />
         <Route path="array-methods" element={<ArrayMethodsPage />} />
-        <Route path="profile/*" element={<Profile />}>
-          <Route index element={<ProfileOverview />} />
-          <Route path="settings" element={<ProfileSettings />} />
+        <Route path="login" element={<Login />} />
+
+        {/* Захищений маршрут для профілю */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="profile/*" element={<Profile />}>
+            <Route index element={<ProfileOverview />} />
+            <Route path="settings" element={<ProfileSettings />} />
+          </Route>
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
