@@ -1,0 +1,44 @@
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 1.2em;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star.half {
+  color: #ffc107;
+  opacity: 0.6;
+}
+
+.star.empty {
+  color: #ddd;
+}
+
+.star.small {
+  font-size: 0.9em;
+}
+
+.star.medium {
+  font-size: 1.2em;
+}
+
+.star.large {
+  font-size: 1.5em;
+}
+
+.ratingText {
+  margin-left: 8px;
+  font-size: 0.9em;
+  color: #666;
+}
+

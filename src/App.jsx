@@ -7,6 +7,7 @@ import Profile from './pages/Profile/Profile';
 import ProfileOverview from './pages/Profile/ProfileOverview';
 import ProfileSettings from './pages/Profile/ProfileSettings';
 import ArrayMethodsPage from './components/pages/ArrayMethodsPage/ArrayMethodsPage';
+import ProductPage from './pages/ProductPage/ProductPage';
 import Login from './pages/Login/Login';
 import ProtectedRoute from './components/hoc/ProtectedRoute';
 import NotFound from './pages/NotFound/NotFound';
@@ -19,6 +20,7 @@ function App() {
         <Route path="feed" element={<Feed />} />
         <Route path="feed/:postId" element={<PostPage />} />
         <Route path="array-methods" element={<ArrayMethodsPage />} />
+        <Route path="product" element={<ProductPage />} />
         <Route path="login" element={<Login />} />
 
         {/* Захищений маршрут для профілю */}
