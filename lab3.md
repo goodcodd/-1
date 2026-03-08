@@ -332,3 +332,4 @@ const filteredPosts = postsData.filter(...);  // Новий масив
 - Легше тестувати та підтримувати
 
 
+

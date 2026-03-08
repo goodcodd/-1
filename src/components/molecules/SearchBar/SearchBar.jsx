@@ -26,3 +26,4 @@ const SearchBar = ({ searchTerm, onSearchChange }) => {
 export default SearchBar;
 
 
+

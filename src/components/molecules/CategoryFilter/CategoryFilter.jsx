@@ -24,3 +24,4 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
 export default CategoryFilter;
 
 
+

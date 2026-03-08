@@ -24,6 +24,18 @@
   font-size: 0.9rem;
   color: #666;
   text-align: center;
+  margin-top: 16px;
 }
+
+.error {
+  padding: 12px;
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 4px;
+  color: #d32f2f;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 
 

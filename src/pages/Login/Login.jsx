@@ -7,17 +7,28 @@ import styles from './Login.module.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
 
     if (email.trim()) {
-      // Імітація успішного логіну
-      login({ email: email.trim() });
-      // Перенаправлення в профіль
-      navigate('/profile', { replace: true });
+      setIsLoading(true);
+      try {
+        // Викликаємо асинхронну функцію login
+        await login(email.trim());
+        // Перенаправлення в профіль після успішного входу
+        navigate('/profile', { replace: true });
+      } catch (err) {
+        setError('Помилка авторизації. Спробуйте ще раз.');
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -32,9 +43,11 @@ const Login = () => {
           placeholder="example@mail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={isLoading}
         />
-        <Button type="submit" variant="primary">
-          Увійти
+        {error && <div className={styles.error}>{error}</div>}
+        <Button type="submit" variant="primary" disabled={isLoading}>
+          {isLoading ? 'Завантаження...' : 'Увійти'}
         </Button>
       </form>
       <p className={styles.hint}>
@@ -45,5 +58,6 @@ const Login = () => {
 };
 
 export default Login;
+
 
 

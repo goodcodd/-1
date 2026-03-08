@@ -34,3 +34,4 @@ const StarRating = ({ rating = 0, maxRating = 5, size = 'medium' }) => {
 
 export default StarRating;
 
+

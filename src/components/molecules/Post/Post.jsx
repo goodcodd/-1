@@ -33,3 +33,4 @@ const Post = ({ author, content, date, avatar, initialLikes = 0 }) => {
 export default Post;
 
 
+
