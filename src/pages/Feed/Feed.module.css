@@ -11,6 +11,27 @@
   font-size: 2rem;
 }
 
+.sortRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sortLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.sortSelect {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
 .resultsInfo {
   margin-bottom: 20px;
   text-align: center;
