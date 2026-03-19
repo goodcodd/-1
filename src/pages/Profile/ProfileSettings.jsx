@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/atoms/Input/Input';
 import Button from '../../components/atoms/Button/Button';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import styles from './ProfileSettings.module.css';
 
 const ProfileSettings = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+
+  const [formData, setFormData] = useLocalStorage('profileSettings.formData', {
     username: 'Student_KP',
     email: 'student@example.com',
     notifications: true
@@ -14,10 +15,10 @@ const ProfileSettings = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   const handleSubmit = (e) => {

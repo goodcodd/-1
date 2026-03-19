@@ -1,13 +1,17 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import {Link, useSearchParams} from 'react-router-dom';
 import Post from '../../components/molecules/Post/Post';
 import SearchBar from '../../components/molecules/SearchBar/SearchBar';
 import CategoryFilter from '../../components/molecules/CategoryFilter/CategoryFilter';
 import EmptyState from '../../components/molecules/EmptyState/EmptyState';
-import { useFetch } from '../../hooks/useFetch';
-import { useMemo } from 'react';
+import {useFetch} from '../../hooks/useFetch';
+import useWindowSize from '../../hooks/useWindowSize';
+import {useMemo} from 'react';
 import styles from './Feed.module.css';
 
 const Feed = () => {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') || '';
   const activeCategory = searchParams.get('category') || 'All';
@@ -68,13 +72,12 @@ const Feed = () => {
       const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
-    const sorted = [...filtered].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       const titleA = (a.title || a.content || '').toLowerCase();
       const titleB = (b.title || b.content || '').toLowerCase();
       if (sortOrder === 'desc') return titleB.localeCompare(titleA);
       return titleA.localeCompare(titleB);
     });
-    return sorted;
   }, [posts, searchQuery, activeCategory, sortOrder]);
 
   // 1. Стан завантаження
@@ -137,7 +140,14 @@ const Feed = () => {
         )}
       </div>
 
-      <div className={styles.feed}>
+      <div
+        className={styles.feed}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: '20px',
+        }}
+      >
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
             <Link 

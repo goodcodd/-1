@@ -1,6 +1,10 @@
+import useWindowSize from '../../hooks/useWindowSize';
 import styles from './ProfileOverview.module.css';
 
 const ProfileOverview = () => {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Інформація профілю</h2>
@@ -24,7 +28,10 @@ const ProfileOverview = () => {
         </div>
       </div>
 
-      <div className={styles.stats}>
+      <div
+        className={styles.stats}
+        style={isMobile ? { gridTemplateColumns: '1fr' } : undefined}
+      >
         <div className={styles.statCard}>
           <h3>Постів</h3>
           <p className={styles.statNumber}>12</p>
