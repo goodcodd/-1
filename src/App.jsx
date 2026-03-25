@@ -11,6 +11,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import Login from './pages/Login/Login';
 import ProtectedRoute from './components/hoc/ProtectedRoute';
 import NotFound from './pages/NotFound/NotFound';
+import PerformanceDemo from './pages/PerformanceDemo/PerformanceDemo';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="feed" element={<Feed />} />
         <Route path="feed/:postId" element={<PostPage />} />
         <Route path="array-methods" element={<ArrayMethodsPage />} />
+        <Route path="performance" element={<PerformanceDemo />} />
         <Route path="product" element={<ProductPage />} />
         <Route path="login" element={<Login />} />
 

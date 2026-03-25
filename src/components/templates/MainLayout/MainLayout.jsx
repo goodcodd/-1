@@ -39,6 +39,9 @@ const MainLayout = () => {
             <NavLink to="/feed" className={getActiveClass}>
               Стрічка
             </NavLink>
+            <NavLink to="/performance" className={getActiveClass}>
+              Продуктивність
+            </NavLink>
             <NavLink to="/profile" className={getActiveClass}>
               Профіль
             </NavLink>
