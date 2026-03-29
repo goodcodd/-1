@@ -3,10 +3,12 @@ import styles from './ProductContainer.module.css';
 import Card from '../../molecules/Card/Card';
 import ProductDetails from '../../molecules/ProductDetails/ProductDetails';
 import ProductActions from '../../molecules/ProductActions/ProductActions';
+import { useCartStore } from '../../../store/useStore';
 
 const ProductContainer = ({ product }) => {
-  // Стан кількості товару зберігається в контейнерному компоненті (Smart Component)
+  // Локальна кількість для форми; глобальний кошик — у Zustand (див. useStore)
   const [quantity, setQuantity] = useState(0);
+  const addToCart = useCartStore((s) => s.addToCart);
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
@@ -14,9 +16,8 @@ const ProductContainer = ({ product }) => {
 
   const handleBuy = () => {
     if (quantity > 0) {
-      alert(`Додано до кошика: ${product.title} x${quantity}`);
-      // Тут була б логіка додавання до кошика
-      setQuantity(0); // Скидаємо кількість після покупки
+      addToCart(product, quantity);
+      setQuantity(0);
     }
   };
 

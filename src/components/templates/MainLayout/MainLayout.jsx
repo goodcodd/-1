@@ -1,12 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import styles from './MainLayout.module.css';
 import useOnlineStatus from '../../../hooks/useOnlineStatus';
+import { useCartStore, selectTotalItems } from '../../../store/useStore';
 
 const MainLayout = () => {
   const getActiveClass = ({ isActive }) =>
     isActive ? `${styles.link} ${styles.active}` : styles.link;
 
   const isOnline = useOnlineStatus();
+  const cartTotalItems = useCartStore(selectTotalItems);
 
   return (
     <div className={styles.wrapper}>
@@ -41,6 +43,14 @@ const MainLayout = () => {
             </NavLink>
             <NavLink to="/performance" className={getActiveClass}>
               Продуктивність
+            </NavLink>
+            <NavLink to="/product" className={getActiveClass}>
+              Товар
+              {cartTotalItems > 0 && (
+                <span className={styles.cartBadge} aria-label={`Товарів у кошику: ${cartTotalItems}`}>
+                  {cartTotalItems > 99 ? '99+' : cartTotalItems}
+                </span>
+              )}
             </NavLink>
             <NavLink to="/profile" className={getActiveClass}>
               Профіль
